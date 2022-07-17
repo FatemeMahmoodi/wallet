@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/signIn', [UserController::class, 'signIn']);
 Route::post('/signUp', [UserController::class, 'signUp']);
 
-
 Route::middleware(['auth:api'])
     ->group(function () {
         Route::post('/signOut', [UserController::class, 'signOut']);

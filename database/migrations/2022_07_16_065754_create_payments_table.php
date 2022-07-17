@@ -19,10 +19,11 @@ return new class extends Migration
                 ->foreignId("user_id")
                 ->constant("users")
                 ->onDelete("CASCADE");
-            $table->string('balance');
+            $table->string('amount');
             $table->tinyInteger('payment_method');
             $table->tinyInteger('status');
-            $table->json('description');
+            $table->json('paid_data')->nullable();
+            $table->json('verify_data')->nullable();
             $table->timestamps();
         });
     }
