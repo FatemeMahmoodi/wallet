@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function signUp(Request\SignUpRequest $request): UserTokenResource
     {
-        $result = $this->repository->signUp($request->only(["username", "mobile", "password"]));
+        $result = $this->repository->signUp($request->only(["username", "email", "password"]));
         return new UserTokenResource($result);
     }
 

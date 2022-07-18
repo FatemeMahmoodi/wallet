@@ -7,6 +7,8 @@ interface PaymentGatewayInterface
 
     public function pay();
 
+    public function callback();
+
     public function verify();
 
 }

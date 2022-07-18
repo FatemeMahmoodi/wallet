@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Api\V1\User;
+namespace App\Http\Requests\Api\V1\Payment;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class SignUpRequest extends FormRequest
+class DepositRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class SignUpRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -24,10 +25,8 @@ class SignUpRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email',
-            'username' => 'required|string|unique:users,username',
-            'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|min:8|same:password|string',
+            'amount' => 'required|string|numeric|min:10000',
+            'gateway' => 'required|exists:payment_gateways,gateway_name'
         ];
     }
 }
