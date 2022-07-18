@@ -12,11 +12,10 @@ use App\Http\Resources\Payment\PaymentResources;
 use App\Interfaces\Repositories\PaymentRepositoryInterface;
 use App\Interfaces\Repositories\UserRepositoryInterface;
 use App\Services\PaymentGatewayRegistry;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
-
 class PaymentController extends Controller
 {
 
@@ -36,8 +35,8 @@ class PaymentController extends Controller
     public function deposit(DepositRequest $request)
     {
         //todo connect to paymentGateway
-        //return $this->gatewayRegistry->get($request->input('gateway'))
-        //->pay(array_merge(['user'=>Auth::user()], $request->all()));
+        return $this->gatewayRegistry->get($request->input('gateway'))
+        ->pay(array_merge(['user'=>Auth::user()], $request->all()));
 
         $result = DB::transaction(function () use ($request) {
             $this->paymentRepository->create([
@@ -91,7 +90,7 @@ class PaymentController extends Controller
      */
     public function index(Request $request): AnonymousResourceCollection
     {
-        return PaymentResources::collection($this->paymentRepository->list($request->all()));
+        return PaymentResources::collection($this->paymentRepository->list($request));
 
     }
 

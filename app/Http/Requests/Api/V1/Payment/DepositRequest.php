@@ -26,7 +26,8 @@ class DepositRequest extends FormRequest
     {
         return [
             'amount' => 'required|int|min:10000|max:100000000',
-            'gateway' => 'required|exists:payment_gateways,gateway_name'
+            //todo connect to payment gateway
+           // 'gateway' => 'required|exists:payment_gateways,gateway_name'
         ];
     }
 }

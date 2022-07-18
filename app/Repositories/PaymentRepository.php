@@ -2,6 +2,7 @@
 
 
 use App\Models\Payment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Interfaces\Repositories\PaymentRepositoryInterface;
@@ -41,9 +42,10 @@ class PaymentRepository implements PaymentRepositoryInterface
      * @param array $input
      * @return array
      */
-    public function list(array $input)
+    public function list(Request $request)
     {
-        return Payment::currentUser()->paginate($input['per_page'], 10);
+        return Payment::currentUser()
+            ->paginate($request->input('per_page', 10));
     }
 
 

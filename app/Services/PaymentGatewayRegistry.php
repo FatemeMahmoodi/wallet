@@ -22,7 +22,7 @@ class PaymentGatewayRegistry
 
     function get($name)
     {
-        if (in_array($name, $this->gateways)) {
+        if (array_key_exists($name, $this->gateways)) {
             return $this->gateways[$name];
         } else {
             throw new \Exception(trans('payment.invalid_gateway'));
