@@ -59,6 +59,13 @@ class UserRepository implements UserRepositoryInterface
         return Auth::user();
     }
 
+    public function update(int $userId, array $data)
+    {
+        $user = User::findOrFail($userId);
+        $data['password'] ?? Hash::make($data['password']);
+        return $user->update($data);
+    }
+
     /**
      * @return bool
      */
@@ -67,4 +74,6 @@ class UserRepository implements UserRepositoryInterface
         Auth::user()->token()->revoke();
         return true;
     }
+
+
 }

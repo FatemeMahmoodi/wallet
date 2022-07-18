@@ -6,5 +6,4 @@ interface PaymentRepositoryInterface
 {
 
     public function create(array $data);
-    public function update();
 }
