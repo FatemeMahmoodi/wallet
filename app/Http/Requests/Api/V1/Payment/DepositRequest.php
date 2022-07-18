@@ -25,7 +25,7 @@ class DepositRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => 'required|string|numeric|min:10000',
+            'amount' => 'required|int|min:10000|max:100000000',
             'gateway' => 'required|exists:payment_gateways,gateway_name'
         ];
     }

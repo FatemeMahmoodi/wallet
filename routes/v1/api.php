@@ -15,7 +15,7 @@ Route::middleware(['auth:api'])
         Route::prefix('payment')
             ->group(function () {
                 Route::post('/deposit', [PaymentController::class, 'deposit']);
-                Route::post('/callback/{paymentGateway}', [PaymentController::class, 'callback']);
+                Route::post('/withdraw', [PaymentController::class, 'withdraw']);
 
             });
     });

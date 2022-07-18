@@ -15,7 +15,7 @@ class SampleGatewayService implements PaymentGatewayInterface
         // here connection to gateway
     }
 
-    public function pay()
+    public function pay(array $data)
     {
         // request to payment gateway
     }
@@ -25,12 +25,12 @@ class SampleGatewayService implements PaymentGatewayInterface
         $this->callbackUrl = Request::root() . config('paymentGateway.callbackUrl') . '/sample';
     }
 
-    public function callback()
+    public function callback(array $data)
     {
         // callback from gateway
     }
 
-    public function verify()
+    public function verify(array $data)
     {
         // verify a payment
     }

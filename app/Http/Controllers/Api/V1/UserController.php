@@ -58,7 +58,6 @@ class UserController extends Controller
      */
     public function SignIn(Request\SignInRequest $request): UserTokenResource
     {
-        dd( $url = \Illuminate\Support\Facades\Request::root());
         $inputs = $request->all();
         $result = $this->repository->signIn($inputs);
         return new UserTokenResource($result);
