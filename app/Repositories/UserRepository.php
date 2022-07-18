@@ -62,7 +62,8 @@ class UserRepository implements UserRepositoryInterface
     public function update(int $userId, array $data)
     {
         $user = User::findOrFail($userId);
-        $data['password'] ?? Hash::make($data['password']);
+        if (isset($data['password']))
+            $data['password'] = Hash::make($data['password']);
         return $user->update($data);
     }
 

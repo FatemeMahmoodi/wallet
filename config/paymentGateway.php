@@ -2,5 +2,5 @@
 
 
  return [
-    'callback_url' => 'api/payment/callback'
+    'callback_url' => 'api/payments/callback'
  ];

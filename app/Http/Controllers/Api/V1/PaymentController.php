@@ -47,14 +47,14 @@ class PaymentController extends Controller
                 'user_id' => Auth::id()
             ]);
             $currentBalance = Auth::user()->balance;
-            $this->userRepository->update(
+          return  $this->userRepository->update(
                 Auth::id(),
                 ['balance' => $currentBalance + $request->input('amount')]
             );
         });
 
         return new OperationSuccessResource([
-            'operation' => trans('payment::deposit'),
+            'operation' => trans('payment.deposit'),
             'status' => $result
         ]);
     }
@@ -73,14 +73,14 @@ class PaymentController extends Controller
                 'user_id' => Auth::id()
             ]);
             $currentBalance = Auth::user()->balance;
-            $this->userRepository->update(
+          return  $this->userRepository->update(
                 Auth::id(),
                 ['balance' => $currentBalance - $request->input('amount')]
             );
         });
 
         return new OperationSuccessResource([
-            'operation' => trans('payment::withdraw'),
+            'operation' => trans('payment.withdraw'),
             'status' => $result
         ]);
     }
@@ -89,7 +89,7 @@ class PaymentController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function paymentsReports(Request $request): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
         return PaymentResources::collection($this->paymentRepository->list($request->all()));
 

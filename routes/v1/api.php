@@ -12,10 +12,10 @@ Route::middleware(['auth:api'])
         Route::post('/signOut', [UserController::class, 'signOut']);
         Route::get('/currentUser', [UserController::class, 'currentUser']);
 
-        Route::prefix('payment')
+        Route::prefix('payments')
             ->group(function () {
                 Route::post('/deposit', [PaymentController::class, 'deposit']);
                 Route::post('/withdraw', [PaymentController::class, 'withdraw']);
-
+                Route::get('/', [PaymentController::class, 'index']);
             });
     });

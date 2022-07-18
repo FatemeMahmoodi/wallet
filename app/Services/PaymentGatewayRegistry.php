@@ -25,7 +25,7 @@ class PaymentGatewayRegistry
         if (in_array($name, $this->gateways)) {
             return $this->gateways[$name];
         } else {
-            throw new \Exception(trans('payment::invalid_gateway'));
+            throw new \Exception(trans('payment.invalid_gateway'));
         }
     }
 

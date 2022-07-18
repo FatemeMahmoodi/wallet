@@ -32,7 +32,7 @@ class WithdrawRequest extends FormRequest
                 'min:10000',
                 function ($attribute, $value, $fail) {
                     if (Auth::user()->balance < $value) {
-                        $fail(trans('payment::insufficient_funds'));
+                        $fail(trans('payment.insufficient_funds'));
                     }
                 },
             ]
